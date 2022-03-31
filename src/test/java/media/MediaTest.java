@@ -1,5 +1,6 @@
-package br.com.chronosAcademy.media;
+package media;
 
+import br.com.chronosAcademy.automacaoWeb.Media;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
