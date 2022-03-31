@@ -1,4 +1,4 @@
-package br.com.chronosAcademy.media;
+package br.com.chronosAcademy.automacaoWeb;
 
 public class Media {
 
