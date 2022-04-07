@@ -24,6 +24,7 @@ public class TesteWeb {
         driver.get("https://www.chronosacademy.com.br");
     }
 
+
     @Test
     public void primeiroTeste(){
         //section[2]/div[3]/div/div/div/div/div[1]/div/h4
@@ -34,6 +35,7 @@ public class TesteWeb {
         String titulo = txtTitulo.getText();
         assertEquals("Porque Tempo É Conhecimento", titulo);
     }
+
 
     @After
     public void finalizaTeste(){
