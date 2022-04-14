@@ -1,7 +1,9 @@
 package br.com.chronosAcademy.automacaoWeb;
 
+import br.com.chronosAcademy.core.Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,13 +16,13 @@ import static org.junit.Assert.*;
 
 public class TesteWeb {
 
-    ChromeDriver driver;
+    WebDriver driver;
+    Driver driverWeb;
 
     @Before
     public void inicializaTeste(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driverWeb = new Driver("chrome");
+        driver = driverWeb.getDriver();
         driver.get("https://www.chronosacademy.com.br");
     }
 
