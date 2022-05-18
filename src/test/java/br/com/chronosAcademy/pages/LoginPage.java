@@ -2,7 +2,12 @@ package br.com.chronosAcademy.pages;
 
 import br.com.chronosAcademy.core.Driver;
 import br.com.chronosAcademy.maps.LoginMap;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage {
     LoginMap loginMap;
@@ -13,6 +18,7 @@ public class LoginPage {
     }
 
     public void clickBtnLogin(){
+        Driver.visibilityOf(loginMap.btnLogin);
         loginMap.btnLogin.click();
     }
 
@@ -36,7 +42,7 @@ public class LoginPage {
         loginMap.inpRemember.click();
     }
 
-    public void  clickLinkCreateAccount(){
+    public void clickLinkCreateAccount(){
         loginMap.linkCreateAccount.click();
     }
 
@@ -45,7 +51,15 @@ public class LoginPage {
     }
 
     public boolean isBtnSignIn(){
-       return loginMap.btnSignIn.isEnabled();
+        return loginMap.btnSignIn.isEnabled();
+    }
+
+    public void visibilityOfBtnFechar(){
+        Driver.visibilityOf(loginMap.btnFechar);
+    }
+
+    public void invisibilityOfBtnFechar(){
+        Driver.invisibilityOf(loginMap.btnFechar);
     }
 
 }

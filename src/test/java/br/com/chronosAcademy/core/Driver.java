@@ -17,6 +17,7 @@ public class Driver {
     private static WebDriverWait wait;
 
     public Driver(String navegador){
+
         switch (navegador){
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -43,17 +44,17 @@ public class Driver {
         driver.manage().window().maximize();
     }
 
-    public static void visibilityof(WebElement element){
+    public static void visibilityOf(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void invisibilityof(WebElement element){
+    public static void invisibilityOf(WebElement element){
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(){
         return driver;
-
     }
+
 
 }
