@@ -12,6 +12,7 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import org.junit.Assert;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class LoginSteps {
@@ -27,10 +28,12 @@ public class LoginSteps {
     }
 
     @After
-    public void fechaNavegador(Scenario cenario){
+    public void fechaNavegador(Scenario cenario) throws IOException {
+        if(cenario.isFailed()){
+            Driver.printScreen("erro no cenario");
+        }
+
         Driver.getDriver().quit();
-        System.out.println(Driver.getNomeCenario()+" - "+cenario.getStatus());
-        System.out.println(cenario.isFailed());
     }
 
     @Dado("que a modal esteja sendo exibida")
@@ -73,7 +76,7 @@ public class LoginSteps {
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
-    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String, String> map) {
+    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String, String> map) throws IOException {
         username = map.get("login");
         String password = map.get("password");
         boolean remember = Boolean.parseBoolean(map.get("remember"));
@@ -85,6 +88,7 @@ public class LoginSteps {
         }
         loginPage.aguardaLoader();
         if(remember) loginPage.clickInpRemember();
+        Driver.printScreen("preenchimento dos campos de login");
     }
 
     @Quando("for realizado um clique no botao sign in")
@@ -93,8 +97,10 @@ public class LoginSteps {
     }
 
     @Entao("deve ser possivel logar no sistema")
-    public void deveSerPossivelLogarNoSistema() {
+    public void deveSerPossivelLogarNoSistema() throws IOException {
+
         Assert.assertEquals(username, loginPage.getUsuarioLogado());
+        Driver.printScreen("logado no sistema");
     }
 
     @Entao("o sistema deve exibir uma mensagem de erro")
