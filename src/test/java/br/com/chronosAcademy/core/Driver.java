@@ -10,6 +10,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -31,9 +32,9 @@ public class Driver {
         Driver.nomeCenario = nomeCenario;
     }
 
-    public Driver(Browser navegador){
+    public Driver(Browser navegador) {
 
-        switch (navegador){
+        switch (navegador) {
             case CHORME:
                 startChrome();
                 break;
@@ -64,28 +65,28 @@ public class Driver {
         boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
         chromeOptions.setHeadless(headless);
         driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().setSize(new Dimension( 1200, 720));
+        driver.manage().window().setSize(new Dimension(1200, 720));
     }
 
-    public static void visibilityOf(WebElement element){
+    public static void visibilityOf(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void invisibilityOf(WebElement element){
+    public static void invisibilityOf(WebElement element) {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public static void atributeChange(WebElement element, String atribute, String value){
+    public static void atributeChange(WebElement element, String atribute, String value) {
         wait.until(ExpectedConditions.attributeContains(element, atribute, value));
     }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void criaDiretorio(){
+    public static void criaDiretorio() {
         String caminho = "src/test/resources/evidencias";
-        diretorio = new File(caminho + "/" + nomeCenario );
+        diretorio = new File(caminho + "/" + nomeCenario);
         diretorio.mkdir();
 
         numPrint = 0;
@@ -93,10 +94,27 @@ public class Driver {
 
     public static void printScreen(String passo) throws IOException {
         numPrint++;
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String caminho = diretorio.getPath() + "/" + numPrint + " - " + passo + ".png";
 
         FileUtils.copyFile(file, new File(caminho));
     }
 
+    public static void aguardaOptions(Select select){
+        for(int i = 0; i < 6; i++){
+            if(select.getOptions().size() > 1){
+                return;
+            }
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+
 }
+
+
+
