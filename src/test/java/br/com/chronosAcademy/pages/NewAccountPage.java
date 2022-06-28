@@ -26,7 +26,7 @@ public class NewAccountPage {
     }
 
     public void setInpPassword(String password){
-        newAccountMap.inpPassword.sendKeys();
+        newAccountMap.inpPassword.sendKeys(password);
     }
 
     public void setInpConfirmPassword(String password){
@@ -35,7 +35,8 @@ public class NewAccountPage {
 
     public void selectCountry(String country){
         Select select = new Select(newAccountMap.slcCountry);
-        select.selectByVisibleText(country);
+        Driver.aguardaOptions(select);
+        //select.selectByVisibleText(country);
     }
 
     public void clickInpIagree(){
