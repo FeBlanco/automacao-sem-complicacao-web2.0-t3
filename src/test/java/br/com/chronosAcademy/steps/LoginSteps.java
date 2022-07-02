@@ -21,7 +21,7 @@ public class LoginSteps {
 
     @Before
     public void iniciaNavegador(Scenario cenario){
-        new Driver(Browser.CHORME);
+        new Driver(Browser.CHROME);
         Driver.setNomeCenario(cenario.getName());
         Driver.criaDiretorio();
 

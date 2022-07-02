@@ -35,7 +35,7 @@ public class Driver {
     public Driver(Browser navegador) {
 
         switch (navegador) {
-            case CHORME:
+            case CHROME:
                 startChrome();
                 break;
             case IE:
